@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+<div>
+
+    <div class="body">
+    {% block content %}
+        <div class="filter">
+            <h2>Filter by amount</h2>
+            <form method="GET" action="{% url 'product_list' %}">
+                <label for="max_amount">Max Amount:</label>
+                <input type="number" name="max_amount" id="max_amount" value="{{ max_amount }}">
+                <button type="submit">Filter</button>
+        </div>
+        <div class="product-list">
+            <h1>Product List</h1>
+            {% if products %}
+                <ul>
+                    {% for product in products %}
+                        <li>
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.price }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No products available yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
